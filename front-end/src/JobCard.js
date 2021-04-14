@@ -1,0 +1,18 @@
+
+function JobCard({ job }) {
+  const { title, salary, equity, companyHandle } = job;
+  return (
+    <div className="JobCard">
+        <h6>{title}</h6>
+        <p>{companyHandle}</p>
+        <div>
+            <small>Salary: {salary}</small>
+        </div>
+        <div>
+            <small>Equity: {equity}</small>
+        </div>
+    </div>
+  );
+}
+
+export default JobCard;
