@@ -30,7 +30,21 @@ class JoblyApi {
     }
   }
 
-  // Individual API routes
+  // Individual API Routes
+
+  // register a new user
+
+  static async register(formData) {
+    let res = await this.request(`auth/register`, formData, "post");
+    return res;
+  }
+
+  //login a user
+
+  static async login(formData) {
+    let res = await this.request(`auth/login`, formData, "post");
+    return res;
+  }
 
   /** Get details on a company by handle. */
 
