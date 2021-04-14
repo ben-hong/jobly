@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { useState, useEffect } from "react";
+import AuthContext from "./AuthContext"
 import JoblyApi from "./JoblyApi";
 import Routes from "./Routes";
 import NavBar from "./NavBar";
@@ -11,34 +12,46 @@ function App() {
 
   useEffect(() => {
     if (token) {
-    const decodedToken = decodeToken(token.token);
-    setCurrUser(decodedToken);
-
+      JoblyApi.token = token;
+      const decodedToken = decodeToken(token);
+      setCurrUser(decodedToken);
+    } else {
+      setCurrUser(null);
     }
   }, [token]);
 
   async function signup(fData) {
+    try {
     const response = await JoblyApi.register(fData);
-    setToken(response);
+    setToken(response.token);
+    return response;
+    } catch(err) {
+      return err;
+    }
   }
 
   async function login(fData) {
+    try {
     const response = await JoblyApi.login(fData);
-    setToken(response);
-    console.log('resp', response)
+    setToken(response.token);
+    return response;
+    } catch(err) {
+      return err;
+    }
   }
 
   function logout() {
     setToken(null);
-    setCurrUser(null);
   }
 
   return (
     <div>
-      <BrowserRouter>
-        <NavBar currUser={currUser} logout={logout}/>
-        <Routes signup={signup} login={login} currUser={currUser} />
-      </BrowserRouter>
+      <AuthContext.Provider value={{login, signup, currUser}}>
+        <BrowserRouter>
+          <NavBar logout={logout} />
+          <Routes />
+        </BrowserRouter>
+      </AuthContext.Provider>
     </div>
   );
 }

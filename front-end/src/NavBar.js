@@ -1,24 +1,26 @@
 import { NavLink } from "react-router-dom";
-function NavBar({ currUser, logout }) {
+import { useContext } from "react";
+import AuthContext from "./AuthContext";
+
+function NavBar({ logout }) {
+  const { currUser } = useContext(AuthContext);
 
   return (
 
     <div>
-      {currUser &&
+      {currUser ?
         <div>
-          <NavLink to="/homepage">Homepage</NavLink>
-          <NavLink to="/jobs">Jobs</NavLink>
-          <NavLink to="/companies">Companies</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-          <NavLink onClick={() => logout()} to="/homepage">Logout {currUser.username}</NavLink>
+          <NavLink exact to="/homepage">Homepage</NavLink>
+          <NavLink exact to="/jobs">Jobs</NavLink>
+          <NavLink exact to="/companies">Companies</NavLink>
+          <NavLink exact to="/profile">Profile</NavLink>
+          <NavLink onClick={logout} exact to="/homepage">Logout {currUser.username}</NavLink>
         </div>
-      }
-      {!currUser &&
+        :
         <div>
-          <NavLink to="/homepage">Homepage</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/signup">Signup</NavLink>
-          
+          <NavLink exact to="/homepage">Homepage</NavLink>
+          <NavLink exact to="/login">Login</NavLink>
+          <NavLink exact to="/signup">Signup</NavLink>
         </div>
       }
     </div>

@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom"
+import { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../AuthContext";
 
 const initialState = {
-  username: "bob",
-  password: "password",
-  firstName: "bob",
-  lastName: "jones",
-  email: "bob@gmail.com",
+  username: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  email: "",
 };
 
-function SignupForm({ signup }) {
+function SignupForm() {
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState(null);
   const history = useHistory();
+  const { signup } = useContext(AuthContext);
 
   function handleChange(evt) {
     evt.preventDefault();
@@ -22,12 +25,16 @@ function SignupForm({ signup }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     // TODO add validation
-    signup(formData);
+    let response = await signup(formData);
+    if (response.token) {
     setFormData(initialState);
     history.push("/companies");
+    } else {
+      setErrors(response);
+    }
   }
 
   return (
@@ -84,6 +91,7 @@ function SignupForm({ signup }) {
           placeholder="Select an email"
         />
       </div>
+      {errors && <ul>{errors.map(error => <li>{error}</li>)}</ul>}
       <button>SUBMIT</button>
     </form>
   );

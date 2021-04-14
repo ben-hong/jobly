@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-
+import AuthContext from "../AuthContext";
 const initialState = {
   username: "",
   password: "",
 };
 
-function LoginForm({ login }) {
+function LoginForm() {
   const [formData, setFormData] = useState(initialState);
+  const [error, setError] = useState(null);
   const history = useHistory();
+  const {login} = useContext(AuthContext);
 
   function handleChange(evt) {
     evt.preventDefault();
@@ -19,13 +21,21 @@ function LoginForm({ login }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     // TODO add validation
-    login(formData);
+    let response = await login(formData);
+    if (response.token) {
     setFormData(initialState);
-    history.push("/companies");
+    history.push("/companies")
+    } else {
+      setError(response[0]);
+    }
   }
+
+
+
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -50,6 +60,7 @@ function LoginForm({ login }) {
           placeholder="Enter a password"
         />
       </div>
+      {error && <p>{error}</p>}
       <button>SUBMIT</button>
     </form>
   );
