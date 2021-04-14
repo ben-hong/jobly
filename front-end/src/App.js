@@ -10,27 +10,33 @@ function App() {
   const [currUser, setCurrUser] = useState(null);
 
   useEffect(() => {
+    if (token) {
     const decodedToken = decodeToken(token.token);
     setCurrUser(decodedToken);
-    console.log("current user", currUser);
+
+    }
   }, [token]);
 
   async function signup(fData) {
     const response = await JoblyApi.register(fData);
-    console.log(response);
     setToken(response);
   }
 
   async function login(fData) {
-    const response = await JoblyApi.register(fData);
-    console.log(response);
+    const response = await JoblyApi.login(fData);
     setToken(response);
+    console.log('resp', response)
+  }
+
+  function logout() {
+    setToken(null);
+    setCurrUser(null);
   }
 
   return (
     <div>
       <BrowserRouter>
-        <NavBar currUser={currUser} />
+        <NavBar currUser={currUser} logout={logout}/>
         <Routes signup={signup} login={login} currUser={currUser} />
       </BrowserRouter>
     </div>
@@ -39,14 +45,3 @@ function App() {
 
 export default App;
 
-// const [testApi, setTestApi] = useState(null);
-
-// useEffect(() => {
-//   async function testApi() {
-//     let api = await JoblyApi.getJobs();
-//     setTestApi(api);
-//   }
-//   testApi();
-// }, []);
-
-// return <div className="App">{console.log({ testApi })}</div>;

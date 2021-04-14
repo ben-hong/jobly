@@ -7,11 +7,13 @@ import LoginForm from "./Auth/LoginForm";
 import SignupForm from "./Auth/SignupForm";
 import CompanyDetail from "./CompanyDetail";
 
-function Routes({ signup, login }) {
+function Routes({ signup, login, currUser }) {
+  
+  
   return (
     <Switch>
       <Route exact path="/">
-        <Homepage />
+        <Homepage currUser={currUser}/>
       </Route>
       <Route exact path="/companies">
         <Companies />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom"
 
 const initialState = {
   username: "bob",
@@ -10,6 +11,7 @@ const initialState = {
 
 function SignupForm({ signup }) {
   const [formData, setFormData] = useState(initialState);
+  const history = useHistory();
 
   function handleChange(evt) {
     evt.preventDefault();
@@ -25,6 +27,7 @@ function SignupForm({ signup }) {
     // TODO add validation
     signup(formData);
     setFormData(initialState);
+    history.push("/companies");
   }
 
   return (
