@@ -1,10 +1,13 @@
 import JoblyApi from "./JoblyApi";
-import { useState, useEffect } from "react";
-import JobCard from "./JobCard"
+import { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
+import AuthContext from "./AuthContext";
+import JobCard from "./JobCard";
 import SearchForm from "./SearchForm";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
+  const { currUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function getJobs() {
@@ -22,15 +25,21 @@ function Jobs() {
   if (jobs.length === 0) return <div>is Loading...</div>;
 
   return (
-    <div className="JobList">
-      <div className="SearchForm">
-        <SearchForm search={searchJobs}/>
-      </div>
-      <div className="JobList-map">
-        {jobs.map((job) => (
-          <JobCard job={job} key={job.id} />
-        ))}
-      </div>
+    <div>
+      {currUser ? (
+        <div className="JobList">
+          <div className="SearchForm">
+            <SearchForm search={searchJobs} />
+          </div>
+          <div className="JobList-map">
+            {jobs.map((job) => (
+              <JobCard job={job} key={job.id} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <Redirect to="/login" />
+      )}
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import JoblyApi from "./JoblyApi";
 import CompanyCard from "./CompanyCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
+import AuthContext from "./AuthContext";
 import SearchForm from "./SearchForm";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
+  const { currUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function getCompanies() {
@@ -22,15 +25,21 @@ function Companies() {
   if (companies.length === 0) return <div>is Loading...</div>;
 
   return (
-    <div className="CompanyList">
-      <div className="SearchForm">
-        <SearchForm search={searchCompanies}/>
-      </div>
-      <div className="CompanyList-map">
-        {companies.map((company) => (
-          <CompanyCard company={company} key={company.handle} />
-        ))}
-      </div>
+    <div>
+      {currUser ? (
+        <div className="CompanyList">
+          <div className="SearchForm">
+            <SearchForm search={searchCompanies} />
+          </div>
+          <div className="CompanyList-map">
+            {companies.map((company) => (
+              <CompanyCard company={company} key={company.handle} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <Redirect to="/login" />
+      )}
     </div>
   );
 }
