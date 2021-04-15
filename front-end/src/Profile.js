@@ -25,17 +25,13 @@ function Profile() {
     evt.preventDefault();
     try {
       let response = await JoblyApi.changeUserProfile(username, formData);
-      console.log('resp here', response)
-      setCurrUser(user => ({ ...user, ...formData }))
-      setFormData(formData);
+      setCurrUser((user) => ({ ...user, ...formData }));
       setErrors([]);
     } catch (err) {
-      setErrors(err)
+      setErrors(err);
     }
   }
-  console.log('errors user here', errors);
   return (
-
     <form onSubmit={handleSubmit}>
       <div className="formGroup">
         <div>Username: {username}</div>
@@ -92,7 +88,7 @@ function Profile() {
       )}
       <button>SUBMIT</button>
     </form>
-  )
+  );
 }
 
 export default Profile;

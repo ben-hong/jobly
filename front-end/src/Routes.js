@@ -14,7 +14,7 @@ function Routes() {
 
   return (
     <div>
-      {currUser ?
+      {currUser ? (
         <Switch>
           <Route exact path="/">
             <Homepage />
@@ -33,7 +33,7 @@ function Routes() {
           </Route>
           <Redirect to="/" />
         </Switch>
-        :
+      ) : (
         <Switch>
           <Route exact path="/">
             <Homepage />
@@ -46,9 +46,8 @@ function Routes() {
           </Route>
           <Redirect to="/" />
         </Switch>
-      }
+      )}
     </div>
-
   );
 }
 

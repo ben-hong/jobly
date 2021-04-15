@@ -1,6 +1,5 @@
 import JoblyApi from "./JoblyApi";
 import { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import JobCard from "./JobCard";
 import SearchForm from "./SearchForm";
@@ -35,7 +34,7 @@ function Jobs() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default Jobs;

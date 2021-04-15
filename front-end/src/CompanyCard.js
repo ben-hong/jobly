@@ -1,16 +1,17 @@
+import { Link } from "react-router-dom";
 import "./CompanyCard.css";
 
 function CompanyCard({ company }) {
   const { name, description, handle } = company;
   return (
-    <a className="CompanyCard" href={`/companies/${handle}`}>
+    <Link className="CompanyCard" to={`/companies/${handle}`}>
       <div className="CardBody">
         <h6 className="Cardname">{name}</h6>
         <small>
           <p>{description}</p>
         </small>
       </div>
-    </a>
+    </Link>
   );
 }
 
