@@ -25,23 +25,17 @@ function Jobs() {
   if (jobs.length === 0) return <div>is Loading...</div>;
 
   return (
-    <div>
-      {currUser ? (
-        <div className="JobList">
-          <div className="SearchForm">
-            <SearchForm search={searchJobs} />
-          </div>
-          <div className="JobList-map">
-            {jobs.map((job) => (
-              <JobCard job={job} key={job.id} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <Redirect to="/login" />
-      )}
+    <div className="JobList">
+      <div className="SearchForm">
+        <SearchForm search={searchJobs} />
+      </div>
+      <div className="JobList-map">
+        {jobs.map((job) => (
+          <JobCard job={job} key={job.id} />
+        ))}
+      </div>
     </div>
-  );
+  )
 }
 
 export default Jobs;

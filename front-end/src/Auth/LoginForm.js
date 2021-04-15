@@ -33,10 +33,6 @@ function LoginForm() {
     }
   }
 
-
-
-  
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="formGroup">

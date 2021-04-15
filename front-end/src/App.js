@@ -19,7 +19,11 @@ function App() {
     if (token) {
       JoblyApi.token = token;
       const decodedToken = decodeToken(token);
-      setCurrUser(decodedToken);
+      async function settingCurrUser() {
+        let userData = await JoblyApi.getUser(decodedToken.username);
+        setCurrUser(userData);
+      }
+      settingCurrUser();
       setLocalStorage(token);
     } else {
       setCurrUser(null);
@@ -47,13 +51,15 @@ function App() {
     }
   }
 
+
+
   function logout() {
     setToken(null);
   }
 
   return (
     <div>
-      <AuthContext.Provider value={{ login, signup, currUser }}>
+      <AuthContext.Provider value={{ login, signup, currUser, setCurrUser }}>
         <BrowserRouter>
           <NavBar logout={logout} />
           <Routes />
