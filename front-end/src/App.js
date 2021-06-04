@@ -59,9 +59,9 @@ function App() {
 
   return (
     <div>
-      <AuthContext.Provider value={{ login, signup, currUser, setCurrUser }}>
+      <AuthContext.Provider value={{ login, signup, currUser, setCurrUser, logout }}>
         <BrowserRouter>
-          <NavBar logout={logout} />
+          <NavBar/>
           <Routes />
         </BrowserRouter>
       </AuthContext.Provider>
