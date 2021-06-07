@@ -39,7 +39,7 @@ function Companies() {
   if (companies.length === 0) return <div>is Loading...</div>;
 
   return (
-
+    
     <div className={classes.companyList} >
       <div className="SearchForm">
         <SearchForm search={searchCompanies} />

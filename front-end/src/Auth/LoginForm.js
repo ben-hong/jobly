@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { useState, useContext } from "react";
 import AuthContext from "../AuthContext";
 
 import Avatar from '@material-ui/core/Avatar';
@@ -119,31 +119,6 @@ function LoginForm() {
         </form>
       </div>
     </Container>
-    //   <form onSubmit={handleSubmit}>
-    //     <div className="formGroup">
-    //       <label htmlFor="username">Username</label>
-    //       <input
-    //         id="username"
-    //         onChange={handleChange}
-    //         name="username"
-    //         value={formData.username}
-    //         placeholder="Enter a username"
-    //       />
-    //     </div>
-    //     <div className="formGroup">
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         onChange={handleChange}
-    //         name="password"
-    //         value={formData.password}
-    //         placeholder="Enter a password"
-    //       />
-    //     </div>
-    //     {error && <p>{error}</p>}
-    //     <button>Log In</button>
-    // </form>
   );
 }
 

@@ -36,7 +36,7 @@ function Homepage() {
   const classes = useStyles();
 
 
-
+  console.log('curr user here', currUser);
   return (
 
     <div>
@@ -44,7 +44,7 @@ function Homepage() {
         <div>
           <h1>Jobly</h1>
           <p>All the jobs in one, convenient place.</p>
-          <h2>Welcome Back, {currUser.username}!</h2>
+          <h2>Welcome Back, {currUser.firstName}!</h2>
         </div>
       }
       {!currUser &&

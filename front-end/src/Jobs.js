@@ -24,7 +24,7 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
   const { currUser } = useContext(AuthContext);
   const classes = useStyles()
-  
+
   useEffect(() => {
     async function getJobs() {
       let res = await JoblyApi.getJobs();
@@ -41,6 +41,7 @@ function Jobs() {
   if (jobs.length === 0) return <div>is Loading...</div>;
 
   return (
+    
     <div className={classes.jobList}>
       <div className="SearchForm">
         <SearchForm search={searchJobs} />
