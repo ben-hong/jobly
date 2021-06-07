@@ -67,18 +67,6 @@ function Profile() {
           placeholder="Select an email"
         />
       </div>
-      {/* <div>Confirm password to make changes: </div>
-      <div className="formGroup">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          onChange={handleChange}
-          name="password"
-          value={formData.password}
-          placeholder="Select a password"
-        />
-      </div> */}
       {errors && (
         <ul>
           {errors.map((error) => (
@@ -86,6 +74,7 @@ function Profile() {
           ))}
         </ul>
       )}
+
       <button>SUBMIT</button>
     </form>
   );

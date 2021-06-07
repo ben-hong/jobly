@@ -1,17 +1,34 @@
 import { Link } from "react-router-dom";
-import "./CompanyCard.css";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345
+  }
+});
 
 function CompanyCard({ company }) {
   const { name, description, handle } = company;
+  const classes = useStyles();
   return (
-    <Link className="CompanyCard" to={`/companies/${handle}`}>
-      <div className="CardBody">
-        <h6 className="Cardname">{name}</h6>
-        <small>
-          <p>{description}</p>
-        </small>
-      </div>
-    </Link>
+    <Card className={`${classes.root} CardBody`}>
+      <Link className="CompanyCard" to={`/companies/${handle}`}>
+
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            <h6 className="Cardname">{name}</h6>
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {description}
+          </Typography>
+        </CardContent>
+      </Link>
+    </Card>
   );
 }
 

@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+
 const initialState = {
   searchTerm: "",
 };
@@ -15,21 +18,23 @@ function SearchForm({ search }) {
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-
+    console.log('name', name, 'value', value)
     setFormData((fData) => ({ ...fData, [name]: value }));
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="searchTerm"></label>
-      <input
+      <TextField
         id="searchTerm"
         onChange={handleChange}
         name="searchTerm"
         value={formData.searchTerm}
         placeholder="Enter search term.."
       />
-      <button>SUBMIT</button>
+      <button>
+        <SearchIcon/>
+      </button>
     </form>
   );
 }
