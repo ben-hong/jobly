@@ -3,9 +3,27 @@ import JobCard from "./JobCard";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  companyDetail: {
+    display: `flex`,
+    flexDirection: `column`,
+    alignItems: `center`,
+  },
+  companyJobs: {
+    "& *": {
+      backgroundColor: `gold`,
+      margin: `20px`
+    }
+  }
+})
+
 function CompanyDetail() {
   const { handle } = useParams();
   const [company, setCompany] = useState(null);
+
+  const classes = useStyles();
 
   useEffect(() => {
     async function companyData() {
@@ -19,10 +37,10 @@ function CompanyDetail() {
   return (
     <div>
       {company &&
-      <div className="CompanyDetail">
+      <div className={classes.companyDetail}>
         <h1>{company.handle}</h1>
         <p>{company.description}</p>
-        <div className="Company-Jobs">
+        <div className={classes.companyJobs}>
           {company.jobs.map(job => <JobCard job={job}/>)}
         </div>
       </div>
