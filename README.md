@@ -5,6 +5,6 @@ apply for the companies listed in the database.
 
 demo site: http://thoughtless-beef.surge.sh/
 
-demo account:
-username: testuser
+demo account:  
+username: testuser  
 password: password
