@@ -1,6 +1,6 @@
 # jobly
 
-This is a simply job applying app that utilizes react and node to allow the user to 
+This is a job applying app that utilizes react and node to allow the user to 
 apply for the companies listed in the database. 
 
 demo site: http://thoughtless-beef.surge.sh/
