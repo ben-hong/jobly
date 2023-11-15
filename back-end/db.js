@@ -5,15 +5,15 @@
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 
-// const db = new Client({
-//   connectionString: getDatabaseUri(),
-// });
 const db = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  connectionString: getDatabaseUri(),
 });
+// const db = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 db.connect();
 
