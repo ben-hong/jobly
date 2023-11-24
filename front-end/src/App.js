@@ -3,7 +3,7 @@ import { decodeToken } from "react-jwt";
 import { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
-import Routes from "./Routes";
+import NavRoutes from "./NavRoutes";
 import NavBar from "./NavBar";
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
       <AuthContext.Provider value={{ login, signup, currUser, setCurrUser, logout }}>
         <BrowserRouter>
           <NavBar/>
-          <Routes />
+          <NavRoutes/>
         </BrowserRouter>
       </AuthContext.Provider>
     </div>

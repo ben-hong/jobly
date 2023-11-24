@@ -44,7 +44,11 @@ function Homepage() {
         </div>
       }
       {!currUser 
-      // &&
+      
+      &&
+      <div>
+        at homepage
+      </div>
       //   <Grid
       //     container
       //     spacing={0}
