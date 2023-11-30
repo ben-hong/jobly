@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
 import NavRoutes from "./NavRoutes";
-import NavBar from "./NavBar";
+import NavBar from "./NavBar/NavBar";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
