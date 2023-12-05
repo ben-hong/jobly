@@ -2,16 +2,16 @@
 
 INSERT INTO users (username, password, first_name, last_name, email, is_admin)
 VALUES ('testuser',
-        '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
+        '$2b$04$7sExi3X7H/VbKQM82QbKne9rgUkNUCrQ8vB6oZfqkJjn8Dtp43G82',
         'Test',
         'User',
-        'joel@joelburton.com',
+        'email@email.com',
         FALSE),
        ('testadmin',
-        '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
+        '$2b$04$7sExi3X7H/VbKQM82QbKne9rgUkNUCrQ8vB6oZfqkJjn8Dtp43G82',
         'Test',
         'Admin!',
-        'joel@joelburton.com',
+        'email@email.com',
         TRUE);
 
 INSERT INTO companies (handle,

@@ -6,11 +6,11 @@ const NavBarLink = styled(NavLink)(() => ({
         textDecoration: "none",
         color: "black",
         "&:hover": {
-            color:"orange",
+            color:"grey",
             textDecoration: "underline",
         },
         "&.active": {
-            color:"orange",
+            color: "grey",
             textDecoration: "underline",
           }
     })

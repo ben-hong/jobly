@@ -9,16 +9,16 @@ function NavBar() {
   return (
     <AppBar color="default" position="static" enableColorOnDark>
       {currUser ?
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar>
           <Box sx={{ display: 'flex', height: 20 }}>
             <NavBarLink exact to="/">
               <img src="/jobly.png" alt="Jobly" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             </NavBarLink>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap:'5rem' }}>
-            <NavBarLink exact to="/jobs" sx={{fontSize:'1.2rem'}}>Jobs</NavBarLink>
-            <NavBarLink exact to="/companies" sx={{fontSize:'1.2rem'}}>Companies</NavBarLink>
-            <NavBarLink exact to="/profile" sx={{fontSize:'1.2rem'}}>Profile</NavBarLink>
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap:'2rem' }}>
+            <NavBarLink exact to="/jobs" sx={{fontWeight:'bold',fontSize:'1rem'}}>Jobs</NavBarLink>
+            <NavBarLink exact to="/companies" sx={{fontWeight:'bold', fontSize:'1rem'}}>Companies</NavBarLink>
+            <NavBarLink exact to="/profile" sx={{fontWeight:'bold',fontSize:'1rem'}}>Profile</NavBarLink>
           </Box>
             <NavBarLink onClick={logout} exact to="/homepage">Log out</NavBarLink>
         </Toolbar>
@@ -28,6 +28,10 @@ function NavBar() {
             <NavBarLink exact to="/">
               <img src="/jobly.png" alt="Jobly" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             </NavBarLink>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap:'2rem' }}>
+            <NavBarLink exact to="/jobs" sx={{fontWeight:'bold',fontSize:'1rem'}}>Jobs</NavBarLink>
+            <NavBarLink exact to="/companies" sx={{fontWeight:'bold', fontSize:'1rem'}}>Companies</NavBarLink>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-evenly', width: 'auto' }}>
             <div>
