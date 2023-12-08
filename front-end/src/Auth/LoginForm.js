@@ -1,4 +1,4 @@
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import AuthContext from "../AuthContext";
 import * as React from 'react';
@@ -26,7 +26,7 @@ const defaultTheme = createTheme();
 function LoginForm() {
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState(null);
-  // const history = useHistory();
+  const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   function handleChange(evt) {
@@ -44,7 +44,7 @@ function LoginForm() {
     let response = await login(formData);
     if (response.token) {
       setFormData(initialState);
-      // history.push("/companies")
+      navigate("/");
     } else {
       setError(response[0]);
     }
@@ -95,10 +95,10 @@ function LoginForm() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               {error && <p>{error}</p>}
               <Button
                 type="submit"
@@ -125,57 +125,6 @@ function LoginForm() {
           </Box>
         </Container>
       </ThemeProvider>
-
-
-    // <Container component="main" maxWidth="xs">
-    //   <CssBaseline />
-    //   <div className={classes.paper}>
-    //     <Avatar className={classes.avatar}>
-    //       <PermIdentityIcon />
-    //     </Avatar>
-    //     <Typography component="h1" variant="h5">
-    //       Sign in
-    //   </Typography>
-    //     <form className={classes.form} noValidate onSubmit={handleSubmit}>
-    //       <TextField
-    //         onChange={handleChange}
-    //         value={formData.username}
-    //         variant="outlined"
-    //         margin="normal"
-    //         required
-    //         fullWidth
-    //         id="username"
-    //         label="Username"
-    //         name="username"
-    //         autoComplete="username"
-    //         autoFocus
-    //       />
-    //       <TextField
-    //         onChange={handleChange}
-    //         value={formData.password}
-    //         variant="outlined"
-    //         margin="normal"
-    //         required
-    //         fullWidth
-    //         name="password"
-    //         label="Password"
-    //         type="password"
-    //         id="password"
-    //         autoComplete="current-password"
-    //       />
-    //       {error && <p>{error}</p>}
-    //       <Button
-    //         type="submit"
-    //         fullWidth
-    //         variant="contained"
-    //         color="primary"
-    //         className={classes.submit}
-    //       >
-    //         Sign In
-    //     </Button>
-    //     </form>
-    //   </div>
-    // </Container>
   );
 }
 

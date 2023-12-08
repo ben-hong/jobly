@@ -4,21 +4,20 @@ import AuthContext from "../AuthContext";
 
 function Homepage() {
   const { currUser } = useContext(AuthContext);
-  // const classes = useStyles();
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       {currUser ?
         <div>
           <h1>Jobly</h1>
-          <p>All the jobs in one, convenient place.</p>
           <h2>Welcome Back, {currUser.firstName}!</h2>
+          <p>Find the right job for you!</p>
         </div>
         :
         <div>
-          at homepage
+          <h1>Jobly</h1>
+          <p>Find the right job for you!</p>
         </div>
       }
-
     </div>
   );
 }

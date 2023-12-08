@@ -15,12 +15,14 @@ function NavBar() {
               <img src="/jobly.png" alt="Jobly" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             </NavBarLink>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap:'2rem' }}>
-            <NavBarLink exact to="/jobs" sx={{fontWeight:'bold',fontSize:'1rem'}}>Jobs</NavBarLink>
-            <NavBarLink exact to="/companies" sx={{fontWeight:'bold', fontSize:'1rem'}}>Companies</NavBarLink>
-            <NavBarLink exact to="/profile" sx={{fontWeight:'bold',fontSize:'1rem'}}>Profile</NavBarLink>
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap: '2rem' }}>
+            <NavBarLink exact to="/jobs" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Jobs</NavBarLink>
+            <NavBarLink exact to="/companies" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Companies</NavBarLink>
           </Box>
-            <NavBarLink onClick={logout} exact to="/homepage">Log out</NavBarLink>
+          <Box sx={{ display: 'flex', justifyContent: 'space-evenly', gap:'.5rem'}}>
+            <NavBarLink exact to="/profile">Profile</NavBarLink>
+            <NavBarLink onClick={logout} exact to="/">Log out</NavBarLink>
+          </Box>
         </Toolbar>
         :
         <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -29,9 +31,9 @@ function NavBar() {
               <img src="/jobly.png" alt="Jobly" style={{ maxWidth: '100%', maxHeight: '100%' }} />
             </NavBarLink>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap:'2rem' }}>
-            <NavBarLink exact to="/jobs" sx={{fontWeight:'bold',fontSize:'1rem'}}>Jobs</NavBarLink>
-            <NavBarLink exact to="/companies" sx={{fontWeight:'bold', fontSize:'1rem'}}>Companies</NavBarLink>
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, gap: '2rem' }}>
+            <NavBarLink exact to="/jobs" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Jobs</NavBarLink>
+            <NavBarLink exact to="/companies" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Companies</NavBarLink>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-evenly', width: 'auto' }}>
             <div>

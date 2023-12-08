@@ -3,27 +3,12 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "./AuthContext";
 import JobCard from "./JobCard";
 import SearchForm from "./SearchForm";
+import Box from '@mui/material/Box';
 
-// import { makeStyles } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles({
-//   jobList: {
-//     display: `flex`,
-//     flexDirection: `column`,
-//     alignItems: `center`,
-//   },
-//   jobListMapped: {
-//     "& *": {
-//       backgroundColor: `gold`,
-//       margin: `20px`
-//     }
-//   }
-// })
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
   const { currUser } = useContext(AuthContext);
-  // const classes = useStyles()
 
   useEffect(() => {
     async function getJobs() {
@@ -41,19 +26,16 @@ function Jobs() {
   if (jobs.length === 0) return <div>is Loading...</div>;
 
   return (
-    <div>
-      jobs
-    </div>
-    // <div className={classes.jobList}>
-    //   <div className="SearchForm">
-    //     <SearchForm search={searchJobs} />
-    //   </div>
-    //   <div className={classes.jobListMapped}>
-    //     {jobs.map((job) => (
-    //       <JobCard job={job} key={job.id} />
-    //     ))}
-    //   </div>
-    // </div>
+    <Box style={{ display:'flex' , flexDirection:'column' , alignItems:'center'}}>
+      <Box sx={{margin:2}}>
+        <SearchForm search={searchJobs} />
+      </Box>
+      <Box>
+        {jobs.map((job) => (
+          <JobCard job={job} key={job.id}/>
+        ))}
+      </Box>
+    </Box>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../AuthContext";
 
 import * as React from 'react';
@@ -30,9 +30,8 @@ const defaultTheme = createTheme();
 function SignupForm() {
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(null);
-  // const history = useHistory();
+  const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
-  // const classes = useStyles(); 
 
   function handleChange(evt) {
     evt.preventDefault();
@@ -49,7 +48,7 @@ function SignupForm() {
     let response = await signup(formData);
     if (response.token) {
       setFormData(initialState);
-      // history.push("/companies");
+      navigate("/");
     } else {
       setErrors(response);
     }
@@ -157,97 +156,6 @@ function SignupForm() {
         </Box>
       </Container>
     </ThemeProvider>
-
-
-    // <Container component="main" maxWidth="xs">
-    //   <CssBaseline />
-    //   <div className={classes.paper}>
-    //     <Avatar className={classes.avatar}>
-    //       <LockOutlinedIcon />
-    //     </Avatar>
-    //     <Typography component="h1" variant="h5">
-    //       Sign up
-    //     </Typography>
-    //     <form className={classes.form} noValidate onSubmit={handleSubmit}>
-    //       <Grid container spacing={2}>
-    //         <Grid item xs={12} sm={6}>
-    //           <TextField
-    //             onChange={handleChange}
-    //             value={formData.firstName}
-    //             name="firstName"
-    //             variant="outlined"
-    //             required
-    //             fullWidth
-    //             id="firstName"
-    //             label="First Name"
-    //             autoFocus
-    //           />
-    //         </Grid>
-    //         <Grid item xs={12} sm={6}>
-    //           <TextField
-    //             onChange={handleChange}
-    //             value={formData.lastName}
-    //             variant="outlined"
-    //             required
-    //             fullWidth
-    //             id="lastName"
-    //             label="Last Name"
-    //             name="lastName"
-    //           />
-    //         </Grid>
-    //         <Grid item xs={12}>
-    //           <TextField
-    //             onChange={handleChange}
-    //             value={formData.username}
-    //             variant="outlined"
-    //             required
-    //             fullWidth
-    //             name="username"
-    //             label="username"
-    //             type="username"
-    //             id="username"
-    //           />
-    //         </Grid>
-    //         <Grid item xs={12}>
-    //           <TextField
-    //             onChange={handleChange}
-    //             value={formData.password}
-    //             variant="outlined"
-    //             required
-    //             fullWidth
-    //             name="password"
-    //             label="Password"
-    //             type="password"
-    //             id="password"
-    //           />
-    //         </Grid>
-    //         <Grid item xs={12}>
-    //           <TextField
-    //             type="email"
-    //             onChange={handleChange}
-    //             value={formData.email}
-    //             variant="outlined"
-    //             required
-    //             fullWidth
-    //             id="email"
-    //             label="Email Address"
-    //             name="email"
-    //           />
-    //         </Grid>
-    //       </Grid>
-    //       {errors && <ul>{errors.map(error => <li>{error}</li>)}</ul>}
-    //       <Button
-    //         type="submit"
-    //         fullWidth
-    //         variant="contained"
-    //         color="primary"
-    //         className={classes.submit}
-    //       >
-    //         Sign Up
-    //       </Button>
-    //     </form>
-    //   </div>
-    // </Container>
   );
 }
 
