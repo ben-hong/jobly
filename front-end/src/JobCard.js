@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 
 
 function JobCard({ job }) {
-  const { title, salary, equity, companyHandle, id } = job;
+  const { title, salary, equity, companyHandle, id, description } = job;
   const { currUser, setCurrUser } = useContext(AuthContext);
   const [applied, setApplied] = useState(checkForApplied());
 
@@ -35,6 +35,9 @@ function JobCard({ job }) {
       <CardContent sx={{paddingTop:0 , paddingBottom:0}}>
         <Typography variant="body2" color="text.secondary">
           <small>Salary: {salary}</small>
+        </Typography>
+        <Typography>
+          {description}
         </Typography>
       </CardContent>
     </Card>
