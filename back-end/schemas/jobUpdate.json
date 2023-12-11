@@ -15,6 +15,10 @@
     "equity": {
       "type": "string",
       "pattern": "0|(0?\\.[0-9]+)"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 0
     }
   },
   "additionalProperties": false,

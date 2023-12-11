@@ -22,7 +22,8 @@ CREATE TABLE jobs (
   salary INTEGER CHECK (salary >= 0),
   equity NUMERIC CHECK (equity <= 1.0),
   company_handle VARCHAR(25) NOT NULL
-    REFERENCES companies ON DELETE CASCADE
+    REFERENCES companies ON DELETE CASCADE,
+  description TEXT
 );
 
 CREATE TABLE applications (

@@ -24,6 +24,7 @@ describe("create", function () {
     title: "Test",
     salary: 100,
     equity: "0.1",
+    description: "this is a good job",
   };
 
   test("works", async function () {
@@ -48,6 +49,7 @@ describe("findAll", function () {
         equity: "0.1",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
       {
         id: testJobIds[1],
@@ -56,6 +58,7 @@ describe("findAll", function () {
         equity: "0.2",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
       {
         id: testJobIds[2],
@@ -64,6 +67,7 @@ describe("findAll", function () {
         equity: "0",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
       {
         id: testJobIds[3],
@@ -72,6 +76,7 @@ describe("findAll", function () {
         equity: null,
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
     ]);
   });
@@ -86,6 +91,7 @@ describe("findAll", function () {
         equity: "0",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
     ]);
   });
@@ -100,6 +106,7 @@ describe("findAll", function () {
         equity: "0.1",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
       {
         id: testJobIds[1],
@@ -108,6 +115,7 @@ describe("findAll", function () {
         equity: "0.2",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
     ]);
   });
@@ -122,6 +130,7 @@ describe("findAll", function () {
         equity: "0.2",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
     ]);
   });
@@ -136,6 +145,7 @@ describe("findAll", function () {
         equity: "0.1",
         companyHandle: "c1",
         companyName: "C1",
+        description: "description",
       },
     ]);
   });
@@ -151,6 +161,7 @@ describe("get", function () {
       title: "Job1",
       salary: 100,
       equity: "0.1",
+      description: "description",
       company: {
         handle: "c1",
         name: "C1",
@@ -178,12 +189,14 @@ describe("update", function () {
     title: "New",
     salary: 500,
     equity: "0.5",
+    description: "jobs are cool"
   };
   test("works", async function () {
     let job = await Job.update(testJobIds[0], updateData);
     expect(job).toEqual({
       id: testJobIds[0],
       companyHandle: "c1",
+      description: 'jobs are cool',
       ...updateData,
     });
   });

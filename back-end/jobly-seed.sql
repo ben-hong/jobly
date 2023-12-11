@@ -161,7 +161,7 @@ VALUES ('bauer-gallagher', 'Bauer-Gallagher', 862,
        ('weber-hernandez', 'Weber-Hernandez', 681,
         'Contain product south picture scientist.', '/logos/logo4.png');
 
-INSERT INTO jobs (title, salary, equity, company_handle)
+INSERT INTO jobs (title, salary, equity, company_handle, description)
 VALUES ('Conservator, furniture', 110000, 0, 'watson-davis', 'As a Conservator specializing in furniture, you will be responsible for the preservation, restoration, and maintenance of valuable furniture pieces. Your expertise will involve assessing the condition of furniture, implementing conservation treatments, and ensuring the long-term integrity of each item in your care.'),
 
 ('Information officer', 200000, 0, 'hall-mills', 'The Information Officer plays a crucial role in managing and optimizing an organizations information systems. Responsibilities include overseeing data security, implementing efficient information processes, and ensuring seamless communication between different departments within the company.'),
@@ -240,7 +240,7 @@ VALUES ('Conservator, furniture', 110000, 0, 'watson-davis', 'As a Conservator s
 
 ('Podiatrist', 68000, NULL, 'reynolds-greene', 'Podiatrists, also known as foot doctors, specialize in the diagnosis and treatment of foot and ankle conditions. Responsibilities include examining patients, prescribing orthotics, performing surgeries, and educating patients on foot health.'),
 
-('Nurse, children\'s', 162000, NULL, 'humphrey-llc', 'Children\'s Nurses provide specialized care to pediatric patients. Responsibilities include administering medications, monitoring vital signs, coordinating with healthcare teams, and educating families on child health and wellness.'),
+('Nurse, children''s', 162000, NULL, 'humphrey-llc', 'Children''s Nurses provide specialized care to pediatric patients. Responsibilities include administering medications, monitoring vital signs, coordinating with healthcare teams, and educating families on child health and wellness.'),
 
 ('Teacher, music', 127000, NULL, 'ingram-ferguson-rubio', 'Music Teachers educate students in the principles and practices of music. Responsibilities include planning and delivering lessons, organizing performances, and fostering a love for music among students of various age groups.'),
 

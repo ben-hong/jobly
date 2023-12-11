@@ -10,9 +10,9 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 class Job {
   /** Create a job (from data), update db, return new job data.
    *
-   * data should be { title, salary, equity, companyHandle }
+   * data should be { title, salary, equity, companyHandle, description }
    *
-   * Returns { id, title, salary, equity, companyHandle }
+   * Returns { id, title, salary, equity, companyHandle, description }
    **/
 
   static async create(data) {
@@ -20,17 +20,18 @@ class Job {
           `INSERT INTO jobs (title,
                              salary,
                              equity,
-                             company_handle)
-           VALUES ($1, $2, $3, $4)
-           RETURNING id, title, salary, equity, company_handle AS "companyHandle"`,
+                             company_handle,
+                             description)
+           VALUES ($1, $2, $3, $4, $5)
+           RETURNING id, title, salary, equity, company_handle AS "companyHandle", description`,
         [
           data.title,
           data.salary,
           data.equity,
           data.companyHandle,
+          data.description,
         ]);
     let job = result.rows[0];
-
     return job;
   }
 
@@ -41,7 +42,7 @@ class Job {
    * - hasEquity (true returns only jobs with equity > 0, other values ignored)
    * - title (will find case-insensitive, partial matches)
    *
-   * Returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
+   * Returns [{ id, title, salary, equity, companyHandle, description, companyName }, ...]
    * */
 
   static async findAll({ minSalary, hasEquity, title } = {}) {
@@ -50,6 +51,7 @@ class Job {
                         j.salary,
                         j.equity,
                         j.company_handle AS "companyHandle",
+                        j.description,
                         c.name AS "companyName"
                  FROM jobs j 
                    LEFT JOIN companies AS c ON c.handle = j.company_handle`;
@@ -86,7 +88,7 @@ class Job {
 
   /** Given a job id, return data about job.
    *
-   * Returns { id, title, salary, equity, companyHandle, company }
+   * Returns { id, title, salary, equity, companyHandle, company, description }
    *   where company is { handle, name, description, numEmployees, logoUrl }
    *
    * Throws NotFoundError if not found.
@@ -98,7 +100,8 @@ class Job {
                   title,
                   salary,
                   equity,
-                  company_handle AS "companyHandle"
+                  company_handle AS "companyHandle",
+                  description
            FROM jobs
            WHERE id = $1`, [id]);
 
@@ -128,7 +131,7 @@ class Job {
    *
    * Data can include: { title, salary, equity }
    *
-   * Returns { id, title, salary, equity, companyHandle }
+   * Returns { id, title, salary, equity, companyHandle, description }
    *
    * Throws NotFoundError if not found.
    */
@@ -146,7 +149,8 @@ class Job {
                                 title, 
                                 salary, 
                                 equity,
-                                company_handle AS "companyHandle"`;
+                                company_handle AS "companyHandle",
+                                description`;
     const result = await db.query(querySql, [...values, id]);
     const job = result.rows[0];
 

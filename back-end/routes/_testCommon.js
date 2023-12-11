@@ -40,11 +40,11 @@ async function commonBeforeAll() {
       });
 
   testJobIds[0] = (await Job.create(
-      { title: "J1", salary: 1, equity: "0.1", companyHandle: "c1" })).id;
+      { title: "J1", salary: 1, equity: "0.1", companyHandle: "c1", description: "description" })).id;
   testJobIds[1] = (await Job.create(
-      { title: "J2", salary: 2, equity: "0.2", companyHandle: "c1" })).id;
+      { title: "J2", salary: 2, equity: "0.2", companyHandle: "c1", description: "description" })).id;
   testJobIds[2] = (await Job.create(
-      { title: "J3", salary: 3, /* equity null */ companyHandle: "c1" })).id;
+      { title: "J3", salary: 3, /* equity null */ companyHandle: "c1", description: "description" })).id;
 
   await User.register({
     username: "u1",

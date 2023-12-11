@@ -30,6 +30,7 @@ describe("POST /jobs", function () {
           title: "J-new",
           salary: 10,
           equity: "0.2",
+          description: "description",
         })
         .set("authorization", `Bearer ${adminToken}`);
     expect(resp.statusCode).toEqual(201);
@@ -40,6 +41,7 @@ describe("POST /jobs", function () {
         salary: 10,
         equity: "0.2",
         companyHandle: "c1",
+        description: "description",
       },
     });
   });
@@ -52,6 +54,7 @@ describe("POST /jobs", function () {
           title: "J-new",
           salary: 10,
           equity: "0.2",
+          description: "description",
         })
         .set("authorization", `Bearer ${u1Token}`);
     expect(resp.statusCode).toEqual(401);
@@ -75,6 +78,7 @@ describe("POST /jobs", function () {
           title: "J-new",
           salary: "not-a-number",
           equity: "0.2",
+          description: "description",
         })
         .set("authorization", `Bearer ${adminToken}`);
     expect(resp.statusCode).toEqual(400);
@@ -96,6 +100,7 @@ describe("GET /jobs", function () {
               equity: "0.1",
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
             {
               id: expect.any(Number),
@@ -104,6 +109,7 @@ describe("GET /jobs", function () {
               equity: "0.2",
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
             {
               id: expect.any(Number),
@@ -112,6 +118,7 @@ describe("GET /jobs", function () {
               equity: null,
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
           ],
         },
@@ -131,6 +138,7 @@ describe("GET /jobs", function () {
               equity: "0.1",
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
             {
               id: expect.any(Number),
@@ -139,6 +147,7 @@ describe("GET /jobs", function () {
               equity: "0.2",
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
           ],
         },
@@ -158,6 +167,7 @@ describe("GET /jobs", function () {
               equity: null,
               companyHandle: "c1",
               companyName: "C1",
+              description: "description",
             },
           ],
         },
@@ -183,6 +193,7 @@ describe("GET /jobs/:id", function () {
         title: "J1",
         salary: 1,
         equity: "0.1",
+        description: "description",
         company: {
           handle: "c1",
           name: "C1",
@@ -217,6 +228,7 @@ describe("PATCH /jobs/:id", function () {
         salary: 1,
         equity: "0.1",
         companyHandle: "c1",
+        description: "description",
       },
     });
   });
