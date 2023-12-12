@@ -3,37 +3,49 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "./AuthContext";
 import JobCard from "./JobCard";
 import SearchForm from "./SearchForm";
-import Box from '@mui/material/Box';
+import { Box, CircularProgress } from "@mui/material";
 
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { currUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function getJobs() {
-      let res = await JoblyApi.getJobs();
-      setJobs(res);
+      try {
+        setLoading(true);
+        let res = await JoblyApi.getJobs();
+        setJobs(res);
+      } finally {
+        setLoading(false);
+      }
     }
+
     getJobs();
   }, []);
 
   async function searchJobs(data) {
-    let res = await JoblyApi.getJobs(data.searchTerm);
-    setJobs(res);
+    try {
+      setLoading(true);
+      let res = await JoblyApi.getJobs(data.searchTerm);
+      setJobs(res);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  if (jobs.length === 0) return <div>is Loading...</div>;
-
   return (
-    <Box style={{ display:'flex' , flexDirection:'column' , alignItems:'center'}}>
-      <Box sx={{margin:2}}>
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{ margin: 2 }}>
         <SearchForm search={searchJobs} />
       </Box>
       <Box>
-        {jobs.map((job) => (
-          <JobCard job={job} key={job.id}/>
-        ))}
+        {loading ? (
+          <CircularProgress disableShrink />
+        ) : (
+          jobs.map((job) => <JobCard job={job} key={job.id} />)
+        )}
       </Box>
     </Box>
   );
