@@ -66,7 +66,11 @@ function JobCard({ job }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
+        {currUser ?
+        <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button> 
+        :
+        <></>
+        }
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
