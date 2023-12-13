@@ -2,7 +2,7 @@ import JoblyApi from "./JoblyApi";
 import JobCard from "./JobCard";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Divider, Chip } from "@mui/material";
 
 function CompanyDetail() {
   const { handle } = useParams();
@@ -18,15 +18,16 @@ function CompanyDetail() {
   }, [])
 
   return (
-    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Box>
       {company &&
-      <Box>
-        <h1>{company.handle}</h1>
-        <p>{company.description}</p>
-        <Box>
-          {company.jobs.map(job => <JobCard job={job}/>)}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h1>{company.handle}</h1>
+          <h4 style={{ 'margin-left': '3em', 'margin-right': '3em' }}>{company.description}</h4>
+          <Divider style={{ width: '100%' }}><Chip label="Jobs"/></Divider>
+          <Box>
+            {company.jobs.map(job => <JobCard job={job} />)}
+          </Box>
         </Box>
-      </Box>
       }
     </Box>
   )
