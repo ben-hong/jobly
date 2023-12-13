@@ -24,7 +24,7 @@ function JobCard({ job }) {
 
   useEffect(() => {
     checkForApplied();
-  },[])   
+  }, [])
   function checkForApplied() {
     let isApplied;
     if (currUser) {
@@ -39,7 +39,7 @@ function JobCard({ job }) {
     JoblyApi.applyForJob(currUser.username, id);
     setApplied(true);
   }
-  
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -55,9 +55,9 @@ function JobCard({ job }) {
   }
 
   return (
-    <Card sx={{ minWidth: 200, maxWidth: 500, margin:3 }}>
-      <CardHeader title={title} subheader={companyHandle}/>
-      <CardContent sx={{paddingTop:0 , paddingBottom:0}}>
+    <Card sx={{ minWidth: 200, maxWidth: 500, margin: 3 }}>
+      <CardHeader title={title} subheader={companyHandle} />
+      <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>
         <Typography variant="body2" color="text.secondary">
           <small>Salary: {salary}</small>
         </Typography>
@@ -67,9 +67,9 @@ function JobCard({ job }) {
       </CardContent>
       <CardActions disableSpacing>
         {currUser ?
-        <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button> 
-        :
-        <></>
+          <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
+          :
+          <></>
         }
         <ExpandMore
           expand={expanded}
