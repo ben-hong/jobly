@@ -31,7 +31,7 @@ function SearchForm({ search }) {
           endAdornment: (
             <InputAdornment position="end" size="small">
               <Tooltip title="search">
-                <Button type="submit" size="small" sx={{ '&.MuiButton-root:hover': { bgcolor: 'transparent' } }}>
+                <Button type="submit" size="small" sx={{ '&.MuiButton-root:hover': { bgcolor: 'transparent' }, justifyContent:"flex-end" }}>
                   <SearchIcon />
                 </Button>
               </Tooltip>

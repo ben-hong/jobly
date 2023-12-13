@@ -5,8 +5,6 @@ import { Typography, Button, CardContent, CardHeader, Card, Box, IconButton, Car
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -55,6 +53,7 @@ function JobCard({ job }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
+        <Button>Apply</Button>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
