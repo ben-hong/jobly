@@ -27,6 +27,9 @@ function NavRoutes() {
       ) : (
         <Routes>
           <Route exact path="/" element={<Homepage/>}/>
+          <Route exact path="/companies" element={<Companies/>} />
+          <Route exact path="/companies/:handle" element={<CompanyDetail/>} />
+          <Route exact path="/jobs" element={<Jobs/>} />
           <Route exact path="/login" element={<LoginForm/>} />
           <Route exact path="/signup" element={<SignupForm/>} />
           <Route element={<Navigate to="/"/>} />

@@ -39,7 +39,6 @@ function LoginForm() {
   }
 
   async function handleSubmit(evt) {
-    console.log(formData);
     evt.preventDefault();
     let response = await login(formData);
     if (response.token) {

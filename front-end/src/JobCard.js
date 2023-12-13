@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
 import { Typography, Button, CardContent, CardHeader, Card, Box, IconButton, CardActions, Collapse } from "@mui/material";
@@ -22,9 +22,22 @@ function JobCard({ job }) {
   const [applied, setApplied] = useState(checkForApplied());
   const [expanded, setExpanded] = useState(false);
 
-  
+  useEffect(() => {
+    checkForApplied();
+  },[])   
   function checkForApplied() {
-    return currUser.applications.some((app) => app === id);
+    let isApplied;
+    if (currUser) {
+      isApplied = currUser.applications.some((app) => app === id);
+    } else {
+      isApplied = false;
+    }
+    return isApplied;
+  }
+
+  function onApply() {
+    JoblyApi.applyForJob(currUser.username, id);
+    setApplied(true);
   }
   
   const handleExpandClick = () => {
@@ -53,7 +66,7 @@ function JobCard({ job }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button>Apply</Button>
+        <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
