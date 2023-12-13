@@ -160,9 +160,9 @@ describe("GET /companies/:handle", function () {
         numEmployees: 1,
         logoUrl: "http://c1.img",
         jobs: [
-          { id: testJobIds[0], title: "J1", equity: "0.1", salary: 1 },
-          { id: testJobIds[1], title: "J2", equity: "0.2", salary: 2 },
-          { id: testJobIds[2], title: "J3", equity: null, salary: 3 },
+          { id: testJobIds[0], title: "J1", equity: "0.1", salary: 1, description: "description" },
+          { id: testJobIds[1], title: "J2", equity: "0.2", salary: 2, description: "description" },
+          { id: testJobIds[2], title: "J3", equity: null, salary: 3, description: "description" },
         ],
       },
     });

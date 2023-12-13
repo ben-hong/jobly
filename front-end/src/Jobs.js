@@ -13,26 +13,21 @@ function Jobs() {
 
   useEffect(() => {
     async function getJobs() {
-      try {
         setLoading(true);
         let res = await JoblyApi.getJobs();
         setJobs(res);
-      } finally {
         setLoading(false);
-      }
     }
 
     getJobs();
   }, []);
 
   async function searchJobs(data) {
-    try {
       setLoading(true);
       let res = await JoblyApi.getJobs(data.searchTerm);
       setJobs(res);
-    } finally {
       setLoading(false);
-    }
+
   }
 
   return (

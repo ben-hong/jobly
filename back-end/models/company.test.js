@@ -181,10 +181,10 @@ describe("get", function () {
       numEmployees: 1,
       logoUrl: "http://c1.img",
       jobs: [
-        { id: testJobIds[0], title: "Job1", salary: 100, equity: "0.1" },
-        { id: testJobIds[1], title: "Job2", salary: 200, equity: "0.2" },
-        { id: testJobIds[2], title: "Job3", salary: 300, equity: "0" },
-        { id: testJobIds[3], title: "Job4", salary: null, equity: null },
+        { id: testJobIds[0], title: "Job1", salary: 100, equity: "0.1", description: "description" },
+        { id: testJobIds[1], title: "Job2", salary: 200, equity: "0.2", description: "description" },
+        { id: testJobIds[2], title: "Job3", salary: 300, equity: "0", description: "description" },
+        { id: testJobIds[3], title: "Job4", salary: null, equity: null, description: "description" },
       ],
     });
   });

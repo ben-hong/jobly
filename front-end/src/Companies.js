@@ -2,57 +2,43 @@ import JoblyApi from "./JoblyApi";
 import CompanyCard from "./CompanyCard";
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
-
-// import { makeStyles } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles({
-//   companyList: {
-//     display: `flex`,
-//     flexDirection: `column`,
-//     alignItems: `center`,
-//   },
-//   companyListMapped: {
-//     "& *": {
-//       backgroundColor: `gold`,
-//       margin: `20px`
-//     }
-//   }
-// })
+import { Box, CircularProgress } from "@mui/material";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
-  // const classes = useStyles();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getCompanies() {
+      setLoading(true);
       let res = await JoblyApi.getCompanies();
       setCompanies(res);
+      setLoading(false);
     }
     getCompanies();
   }, []);
 
   async function searchCompanies(data) {
+    setLoading(true);
     let res = await JoblyApi.getCompanies(data.searchTerm);
     setCompanies(res);
+    setLoading(false);
   }
 
-  if (companies.length === 0) return <div>is Loading...</div>;
-
   return (
-    <div>
-      companies
-    </div>    
-    // <div className={classes.companyList} >
-    //   <div className="SearchForm">
-    //     <SearchForm search={searchCompanies} />
-    //   </div>
-    //   <div className={classes.companyListMapped}>
-    //     {companies.map((company) => (
-    //       <CompanyCard company={company} key={company.handle} />
-    //     ))}
-    //   </div>
-    // </div>
-  ) 
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{ margin: 2 }}>
+        <SearchForm search={searchCompanies} />
+      </Box>
+      <Box>
+        {loading ? (
+          <CircularProgress disableShrink />
+        ) : (companies.map((company) => (
+          <CompanyCard company={company} key={company.handle} />))
+        )}
+      </Box>
+    </Box>
+  )
 }
 
 export default Companies;

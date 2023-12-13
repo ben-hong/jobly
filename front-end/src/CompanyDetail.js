@@ -2,28 +2,11 @@ import JoblyApi from "./JoblyApi";
 import JobCard from "./JobCard";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-// import { makeStyles } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles({
-//   companyDetail: {
-//     display: `flex`,
-//     flexDirection: `column`,
-//     alignItems: `center`,
-//   },
-//   companyJobs: {
-//     "& *": {
-//       backgroundColor: `gold`,
-//       margin: `20px`
-//     }
-//   }
-// })
+import { Box } from "@mui/material";
 
 function CompanyDetail() {
   const { handle } = useParams();
   const [company, setCompany] = useState(null);
-
-  // const classes = useStyles();
 
   useEffect(() => {
     async function companyData() {
@@ -35,20 +18,17 @@ function CompanyDetail() {
   }, [])
 
   return (
-    <div>
-      company detail
-    </div>
-    // <div>
-    //   {company &&
-    //   <div className={classes.companyDetail}>
-    //     <h1>{company.handle}</h1>
-    //     <p>{company.description}</p>
-    //     <div className={classes.companyJobs}>
-    //       {company.jobs.map(job => <JobCard job={job}/>)}
-    //     </div>
-    //   </div>
-    //   }
-    // </div>
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {company &&
+      <Box>
+        <h1>{company.handle}</h1>
+        <p>{company.description}</p>
+        <Box>
+          {company.jobs.map(job => <JobCard job={job}/>)}
+        </Box>
+      </Box>
+      }
+    </Box>
   )
 }
 

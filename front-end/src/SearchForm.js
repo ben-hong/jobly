@@ -25,7 +25,7 @@ function SearchForm({ search }) {
         onChange={handleChange}
         name="searchTerm"
         value={formData.searchTerm}
-        placeholder="Enter Job Title"
+        placeholder="Search Here"
         size="small"
         InputProps={{
           endAdornment: (

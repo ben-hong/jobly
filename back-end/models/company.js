@@ -123,7 +123,7 @@ class Company {
     if (!company) throw new NotFoundError(`No company: ${handle}`);
 
     const jobsRes = await db.query(
-          `SELECT id, title, salary, equity
+          `SELECT id, title, salary, equity, description
            FROM jobs
            WHERE company_handle = $1
            ORDER BY id`,
