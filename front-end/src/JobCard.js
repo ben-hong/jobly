@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
-import { Typography, Button, CardContent, CardHeader, Card, Box, IconButton, CardActions, Collapse } from "@mui/material";
+import { Typography, Button, CardContent, CardHeader, Card, Box, IconButton, CardActions, Collapse, Link } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -21,9 +21,11 @@ function JobCard({ job }) {
   const { currUser, setCurrUser } = useContext(AuthContext);
   const [applied, setApplied] = useState(checkForApplied());
   const [expanded, setExpanded] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    checkForApplied();
+    let bool = checkForApplied();
+    setApplied(bool);
   }, [])
   function checkForApplied() {
     let isApplied;
@@ -35,28 +37,32 @@ function JobCard({ job }) {
     return isApplied;
   }
 
-  function onApply() {
-    JoblyApi.applyForJob(currUser.username, id);
-    setApplied(true);
-  }
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   async function handleClick(evt) {
     evt.preventDefault();
+    setLoading(true);
     await JoblyApi.applyForJob(currUser.username, id);
     setCurrUser((user) => ({
       ...user,
       applications: [...user.applications, id],
     }));
     setApplied(true);
+    setLoading(false);
   }
 
   return (
     <Card sx={{ minWidth: 200, maxWidth: 500, margin: 3 }}>
-      <CardHeader title={title} subheader={companyHandle} />
+      <CardHeader
+        title={title}
+        subheader={
+          <Link href={`/companies/${companyHandle}`} color="inherit" underline="none">
+            {companyHandle}
+          </Link>
+        }
+      />
       <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>
         <Typography variant="body2" color="text.secondary">
           <small>Salary: {salary}</small>
@@ -67,7 +73,7 @@ function JobCard({ job }) {
       </CardContent>
       <CardActions disableSpacing>
         {currUser ?
-          <Button onClick={onApply} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
+          <Button onClick={handleClick} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
           :
           <></>
         }
