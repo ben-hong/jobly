@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
-import { Typography, Button, CardContent, CardHeader, Card, Box, IconButton, CardActions, Collapse, Link } from "@mui/material";
+import { Typography, Button, CardContent, CardHeader, Card, IconButton, CardActions, Collapse, Link, CircularProgress } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -19,14 +19,17 @@ const ExpandMore = styled((props) => {
 function JobCard({ job }) {
   const { title, salary, equity, companyHandle, id, description } = job;
   const { currUser, setCurrUser } = useContext(AuthContext);
-  const [applied, setApplied] = useState(checkForApplied());
+  const [applied, setApplied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    let bool = checkForApplied();
-    setApplied(bool);
-  }, [])
+    if (currUser) {
+      let bool = checkForApplied();
+      setApplied(bool);
+    }
+    setLoading(false);
+  }, [currUser])
+
   function checkForApplied() {
     let isApplied;
     if (currUser) {
@@ -43,25 +46,23 @@ function JobCard({ job }) {
 
   async function handleClick(evt) {
     evt.preventDefault();
-    setLoading(true);
     await JoblyApi.applyForJob(currUser.username, id);
     setCurrUser((user) => ({
       ...user,
       applications: [...user.applications, id],
     }));
     setApplied(true);
-    setLoading(false);
   }
 
   return (
     <Card sx={{ minWidth: 200, maxWidth: 500, margin: 3 }}>
       <CardHeader
         title={title}
-        subheader={
+        subheader={(
           <Link href={`/companies/${companyHandle}`} color="inherit" underline="none">
             {companyHandle}
           </Link>
-        }
+        )}
       />
       <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>
         <Typography variant="body2" color="text.secondary">
@@ -72,10 +73,14 @@ function JobCard({ job }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {currUser ?
-          <Button onClick={handleClick} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
+        {loading ? <CircularProgress/> 
           :
-          <></>
+          (
+            currUser ?
+            <Button onClick={handleClick} disabled={applied}>{(applied ? "Applied" : "Apply")}</Button>
+            :
+            <></>
+          )
         }
         <ExpandMore
           expand={expanded}

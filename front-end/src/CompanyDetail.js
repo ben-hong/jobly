@@ -22,10 +22,10 @@ function CompanyDetail() {
       {company &&
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h1>{company.handle}</h1>
-          <h4 style={{ 'margin-left': '3em', 'margin-right': '3em' }}>{company.description}</h4>
+          <h4 style={{ 'marginLeft': '3em', 'marginRIght': '3em' }}>{company.description}</h4>
           <Divider style={{ width: '100%' }}><Chip label="Jobs"/></Divider>
           <Box>
-            {company.jobs.map(job => <JobCard job={job} />)}
+            {company.jobs.map(job => <JobCard key={job.id} job={job} />)}
           </Box>
         </Box>
       }
