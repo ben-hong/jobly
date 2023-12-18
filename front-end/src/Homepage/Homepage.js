@@ -22,8 +22,8 @@ function Homepage() {
       {currUser ?
         <Box>
           <h1 style={{margin:0}}>Jobly</h1>
+          <p>Find the right job for you</p>
           <h2>Welcome Back, {currUser.firstName}!</h2>
-          <p>Find the right job for you!</p>
         </Box>
         :
         <Box>
