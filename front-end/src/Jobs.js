@@ -31,7 +31,7 @@ function Jobs() {
   }
 
   return (
-    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Box sx={{ margin: 2 }}>
         <SearchForm search={searchJobs} />
       </Box>

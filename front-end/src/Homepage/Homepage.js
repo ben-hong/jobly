@@ -1,24 +1,37 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../AuthContext";
+import { Box } from "@mui/material";
+
 
 function Homepage() {
   const { currUser } = useContext(AuthContext);
   return (
-    <div style={{ textAlign: 'center' }}>
+    <Box
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundImage: `url('cityscape.png')`,
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        height: '100vh',
+        color: 'white',
+      }}
+    >
       {currUser ?
-        <div>
-          <h1>Jobly</h1>
+        <Box>
+          <h1 style={{margin:0}}>Jobly</h1>
           <h2>Welcome Back, {currUser.firstName}!</h2>
           <p>Find the right job for you!</p>
-        </div>
+        </Box>
         :
-        <div>
-          <h1>Jobly</h1>
+        <Box>
+          <h1 style={{margin:0}}>Jobly</h1>
           <p>Find the right job for you!</p>
-        </div>
+        </Box>
       }
-    </div>
+    </Box>
   );
 }
 
