@@ -28,7 +28,7 @@ function Homepage() {
         :
         <Box>
           <h1 style={{margin:0}}>Jobly</h1>
-          <p>Find the right job for you!</p>
+          <p>Find the right job for you</p>
         </Box>
       }
     </Box>
