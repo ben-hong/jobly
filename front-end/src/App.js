@@ -9,7 +9,7 @@ import NavBar from "./NavBar/NavBar";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currUser, setCurrUser] = useState(null);
-
+  console.log(currUser);
   function setLocalStorage(token) {
     localStorage.setItem("token", token);
     return localStorage.getItem("token");
