@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import AuthContext from "../AuthContext";
-import { AppBar, Toolbar, Link } from "@mui/material";
+import { AppBar, Toolbar, useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
-import { NavBarLink } from "./NavStyle"
+import { NavBarLink } from "./NavStyle";
+import BurgerMenu from "./BurgerMenu";
+
 function NavBar() {
   const { currUser, logout } = useContext(AuthContext);
+  const isPhoneScreen = useMediaQuery('(max-width: 600px)');
 
   return (
     <AppBar color="default" position="static" enableColorOnDark>
@@ -19,9 +22,15 @@ function NavBar() {
             <NavBarLink to="/jobs" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Jobs</NavBarLink>
             <NavBarLink to="/companies" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Companies</NavBarLink>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-evenly', gap:'.5rem'}}>
-            <NavBarLink to="/profile">Profile</NavBarLink>
-            <NavBarLink onClick={logout} to="/">Log out</NavBarLink>
+          <Box sx={{ display: 'flex', justifyContent: 'space-evenly', gap: '.5rem' }}>
+            {isPhoneScreen ? (
+              <BurgerMenu logout={logout}/>
+            ) : (
+              <>
+                <NavBarLink to="/profile">Profile</NavBarLink>
+                <NavBarLink to="/" onClick={logout}>Log out</NavBarLink>
+              </>
+            )}
           </Box>
         </Toolbar>
         :
@@ -36,12 +45,7 @@ function NavBar() {
             <NavBarLink to="/companies" sx={{ fontWeight: 'bold', fontSize: '1rem' }}>Companies</NavBarLink>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-evenly', width: 'auto' }}>
-            <div>
-              <NavBarLink to="/login">Login</NavBarLink>
-            </div>
-            <div style={{ marginLeft: '10px' }}>
-              <NavBarLink to="/signup">Signup</NavBarLink>
-            </div>
+            <NavBarLink to="/login">Login</NavBarLink>
           </Box>
 
         </Toolbar>
