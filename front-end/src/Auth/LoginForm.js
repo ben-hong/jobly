@@ -2,19 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import AuthContext from "../AuthContext";
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {Avatar, Alert, Button, CssBaseline, FormControlLabel, TextField, Link, Grid, Box, Typography, Container} from '@mui/material'
 
 const initialState = {
   username: "",
@@ -98,7 +88,7 @@ function LoginForm() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               /> */}
-              {error && <p>{error}</p>}
+              {error && <Alert severity="error">{error}</Alert>}
               <Button
                 type="submit"
                 fullWidth

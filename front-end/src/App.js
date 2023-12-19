@@ -37,6 +37,7 @@ function App() {
       setToken(response.token);
       return response;
     } catch (err) {
+      console.log(err);
       return err;
     }
   }

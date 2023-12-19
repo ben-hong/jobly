@@ -45,7 +45,8 @@ router.post("/token", async function (req, res, next) {
 router.post("/register", async function (req, res, next) {
   const validator = jsonschema.validate(req.body, userRegisterSchema);
   if (!validator.valid) {
-    const errs = validator.errors.map(e => e.stack);
+    const errs = validator.errors.map(e => e.stack.substring(9));
+    console.log('here are the errors', errs);
     throw new BadRequestError(errs);
   }
   const newUser = await User.register({ ...req.body, isAdmin: false });
