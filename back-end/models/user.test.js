@@ -175,7 +175,8 @@ describe("update", function () {
 
   test("works: set password", async function () {
     let job = await User.update("u1", {
-      password: "new",
+      password: "password1",
+      newPassword: "new",
     });
     expect(job).toEqual({
       username: "u1",
@@ -187,6 +188,31 @@ describe("update", function () {
     const found = await db.query("SELECT * FROM users WHERE username = 'u1'");
     expect(found.rows.length).toEqual(1);
     expect(found.rows[0].password.startsWith("$2b$")).toEqual(true);
+  });
+
+  test("fails: incorrect password", async function () {
+    try {
+      await User.update("u1", {
+        password: "pass",
+        newPassword: "new",
+      });
+      fail();
+    } catch (err) {
+      console.log('this is error ', err);
+      expect(err instanceof UnauthorizedError).toBeTruthy();
+    }
+  });
+
+  test("fails: no password provided", async function () {
+    try {
+      await User.update("u1", {
+        newPassword: "new",
+      });
+      fail();
+    } catch (err) {
+      console.log('this is error ', err);
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
   });
 
   test("not found if no such user", async function () {

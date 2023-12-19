@@ -167,8 +167,12 @@ class User {
 
   static async update(username, data) {
     if (data.password) {
-      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+      const isPassword = await User.authenticate(username, data.password);
+      if (isPassword) {
+        data.password = await bcrypt.hash(data.newPassword, BCRYPT_WORK_FACTOR);
+      }
     }
+    delete data.newPassword;
 
     const { setCols, values } = sqlForPartialUpdate(
         data,
@@ -191,7 +195,7 @@ class User {
     const user = result.rows[0];
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
-
+    
     delete user.password;
     return user;
   }
