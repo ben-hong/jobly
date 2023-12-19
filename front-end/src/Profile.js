@@ -2,14 +2,18 @@ import { useContext, useState } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Avatar, Button, CssBaseline, TextField, Typography, Container } from "@mui/material";
+import { Avatar, Alert, Button, CssBaseline, TextField, Typography, Container } from "@mui/material";
 
 function Profile() {
   const { currUser, setCurrUser } = useContext(AuthContext);
   const { username, firstName, lastName, email } = currUser;
   const initialState = { firstName, lastName };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState(null);
+  const [nameErrors, setNameErrors] = useState(null);
+  const [nameChanged, setNameChanged] = useState(false);
+  const [passwordData, setPasswordData] = useState({ password: "", newPassword: "" });
+  const [passwordErrors, setPasswordErrors] = useState(null);
+  const [passwordChanged, setPasswordChanged] = useState(false);
 
   function handleChange(evt) {
     evt.preventDefault();
@@ -25,12 +29,31 @@ function Profile() {
     try {
       await JoblyApi.changeUserProfile(username, formData);
       setCurrUser((user) => ({ ...user, ...formData }));
-      setErrors([]);
+      setNameChanged(true);
+      setNameErrors(null);
     } catch (err) {
-      setErrors(err);
+      setNameErrors(err);
+      setNameChanged(false);
     }
   }
 
+  function handlePassChange(evt) {
+    const { name, value } = evt.target;
+    setPasswordData((pData) => ({ ...pData, [name]: value }));
+  }
+
+  async function passChangeSubmit(evt) {
+    evt.preventDefault();
+    setPasswordData({ password: "", newPassword: "" });
+    setPasswordErrors(null);
+    try {
+      await JoblyApi.changeUserProfile(username, passwordData);
+      setPasswordChanged(true);
+    } catch (err) {
+      setPasswordErrors(err);
+      setPasswordChanged(false);
+    }
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -69,39 +92,8 @@ function Profile() {
             id="lastName"
             autoComplete="lastName"
           />
-          <TextField
-            onChange={handleChange}
-            value={formData.password}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="password"
-            type="password"
-            id="password"
-            autoComplete="password"
-          />
-                    <TextField
-            onChange={handleChange}
-            value={formData.password}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="password"
-            type="password"
-            id="password"
-            autoComplete="password"
-          />
-          {errors && (
-            <ul>
-              {errors.map((error) => (
-                <li>{error}</li>
-              ))}
-            </ul>
-          )}
+          {nameErrors && nameErrors.map(e => <Alert key={e} severity="error">{e}</Alert>)}
+          {nameChanged && <Alert severity="success">Successfully Changed Name!</Alert>}
           <Button
             type="submit"
             fullWidth
@@ -109,6 +101,44 @@ function Profile() {
             color="primary"
           >
             Submit
+          </Button>
+        </form>
+        <form noValidate onSubmit={passChangeSubmit}>
+          <TextField
+            onChange={handlePassChange}
+            value={passwordData.password}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="password"
+            type="password"
+            id="password"
+            autoComplete="password"
+          />
+          <TextField
+            onChange={handlePassChange}
+            value={passwordData.newPassword}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="newPassword"
+            label="new password"
+            type="password"
+            id="newPassword"
+            autoComplete="newPassword"
+          />
+          {passwordErrors && passwordErrors.map(e => <Alert severity="error">{e}</Alert>)}
+          {passwordChanged && <Alert severity="success">Successfully Changed Password!</Alert>}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            Change Password
           </Button>
         </form>
       </div>
