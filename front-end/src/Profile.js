@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Avatar, Alert, Button, CssBaseline, TextField, Typography, Container } from "@mui/material";
+import { Avatar, Alert, Box, Button, CssBaseline, Divider, TextField, Typography, Container } from "@mui/material";
 
 function Profile() {
   const { currUser, setCurrUser } = useContext(AuthContext);
@@ -57,91 +57,112 @@ function Profile() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div>
+      <Box
+        sx={{
+          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <Avatar>
           <PermIdentityIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Username: {username}
-          Email: {email}
-        </Typography>
-        <form noValidate onSubmit={handleSubmit}>
-          <TextField
-            onChange={handleChange}
-            value={formData.firstName}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="firstName"
-            label="First Name"
-            name="firstName"
-            autoComplete="firstName"
-            autoFocus
-          />
-          <TextField
-            onChange={handleChange}
-            value={formData.lastName}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="lastName"
-            label="Last Name"
-            type="lastName"
-            id="lastName"
-            autoComplete="lastName"
-          />
-          {nameErrors && nameErrors.map(e => <Alert key={e} severity="error">{e}</Alert>)}
-          {nameChanged && <Alert severity="success">Successfully Changed Name!</Alert>}
+        <Box sx={{margin:1}}>
+          <Typography variant="h5">
+            Username - {username}
+          </Typography>
+          <Typography variant="h5">
+            Email - {email}
+          </Typography>
+        </Box>
+        <Divider style={{ margin: 3, width: '100%' }} />
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 3 }}>
+          <Typography variant="h6"><strong>Change Your Name</strong></Typography>
+          <form noValidate id="nameForm" onSubmit={handleSubmit}>
+            <TextField
+              onChange={handleChange}
+              value={formData.firstName}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="firstName"
+              label="First Name"
+              name="firstName"
+              autoComplete="firstName"
+              autoFocus
+            />
+            <TextField
+              onChange={handleChange}
+              value={formData.lastName}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="lastName"
+              label="Last Name"
+              type="lastName"
+              id="lastName"
+              autoComplete="lastName"
+            />
+            {nameErrors && nameErrors.map(e => <Alert key={e} severity="error">{e}</Alert>)}
+            {nameChanged && <Alert severity="success">Successfully Changed Name!</Alert>}
+          </form>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
+            form="nameForm"
+            sx={{ width: '33%', marginTop: 1 }}
           >
             Submit
           </Button>
-        </form>
-        <form noValidate onSubmit={passChangeSubmit}>
-          <TextField
-            onChange={handlePassChange}
-            value={passwordData.password}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="password"
-            type="password"
-            id="password"
-            autoComplete="password"
-          />
-          <TextField
-            onChange={handlePassChange}
-            value={passwordData.newPassword}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="newPassword"
-            label="new password"
-            type="password"
-            id="newPassword"
-            autoComplete="newPassword"
-          />
-          {passwordErrors && passwordErrors.map(e => <Alert severity="error">{e}</Alert>)}
-          {passwordChanged && <Alert severity="success">Successfully Changed Password!</Alert>}
+        </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:3 }}>
+          <Typography variant="h6"><strong>Change Your Password</strong></Typography>
+          <form noValidate id="passForm" onSubmit={passChangeSubmit}>
+            <TextField
+              onChange={handlePassChange}
+              value={passwordData.password}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="password"
+              type="password"
+              id="password"
+              autoComplete="password"
+            />
+            <TextField
+              onChange={handlePassChange}
+              value={passwordData.newPassword}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="newPassword"
+              label="new password"
+              type="password"
+              id="newPassword"
+              autoComplete="newPassword"
+            />
+            {passwordErrors && passwordErrors.map(e => <Alert severity="error">{e}</Alert>)}
+            {passwordChanged && <Alert severity="success">Successfully Changed Password!</Alert>}
+          </form>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
+            form="passForm"
+            sx={{ width: '50%', marginTop: 1 }}
           >
             Change Password
           </Button>
-        </form>
-      </div>
+        </Box>
+      </Box>
     </Container>
   )
 }
