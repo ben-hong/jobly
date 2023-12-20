@@ -49,7 +49,7 @@ function SignupForm() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 3,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -135,7 +135,7 @@ function SignupForm() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link href="/login" variant="body2">
                   Already have an account? Sign in
