@@ -68,7 +68,7 @@ function Profile() {
         <Avatar>
           <PermIdentityIcon />
         </Avatar>
-        <Box sx={{margin:1}}>
+        <Box sx={{ margin: 1 }}>
           <Typography variant="h5">
             Username - {username}
           </Typography>
@@ -119,9 +119,10 @@ function Profile() {
             Submit
           </Button>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 3 }}>
           <Typography variant="h6"><strong>Change Your Password</strong></Typography>
-          <form noValidate id="passForm" onSubmit={passChangeSubmit}>
+          <form noValidate id="passForm"
+            onSubmit={passChangeSubmit}>
             <TextField
               onChange={handlePassChange}
               value={passwordData.password}

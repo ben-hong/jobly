@@ -39,6 +39,10 @@ function LoginForm() {
     }
   }
 
+  async function demoLogin() {
+    await login({username:"testuser", password:"password"})
+    navigate("/");
+  }
 
   return (
 
@@ -100,8 +104,8 @@ function LoginForm() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
+                  <Link onClick={() => {demoLogin()}} variant="body2" sx={{ cursor: 'pointer' }}>
+                    Demo Account
                   </Link>
                 </Grid>
                 <Grid item>

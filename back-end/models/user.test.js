@@ -198,7 +198,6 @@ describe("update", function () {
       });
       fail();
     } catch (err) {
-      console.log('this is error ', err);
       expect(err instanceof UnauthorizedError).toBeTruthy();
     }
   });
@@ -210,7 +209,6 @@ describe("update", function () {
       });
       fail();
     } catch (err) {
-      console.log('this is error ', err);
       expect(err instanceof BadRequestError).toBeTruthy();
     }
   });

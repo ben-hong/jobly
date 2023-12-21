@@ -97,6 +97,10 @@ router.patch("/:username", ensureCorrectUserOrAdmin, async function (req, res, n
       throw new BadRequestError(errs);
     }
 
+    if (req.params.username === "testuser" && req.body.password !== undefined) {
+      throw new BadRequestError(['Demo user password cannot be altered']);
+    }
+
     const user = await User.update(req.params.username, req.body);
     return res.json({ user });
   } catch (err) {
