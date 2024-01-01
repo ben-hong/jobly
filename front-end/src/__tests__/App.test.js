@@ -1,12 +1,11 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 describe('App Component', () => {
   it('renders App component', () => {
     render(<App/>);
-    const helloText = screen.getByText(/Jobly/i);
-    expect(helloText).toBeInTheDocument();
+    const text = screen.getByText(/Jobly/i);
+    expect(text).toBeInTheDocument();
   })
 
   it('renders with NavBar', () => {
@@ -18,10 +17,13 @@ describe('App Component', () => {
     expect(companyLink).toBeInTheDocument();
   });
 
-  // it('logs in demo user', () => {
-  //   render(<App/>);
-  //   const loginLink = screen.getByRole('link', { name: /Login/i });
-  //   fireEvent.click(loginLink);
-  // })
+  it('accesses login page', () => {
+    render(<App/>);
+    const loginLink = screen.getByRole('link', { name: /Login/i });
+    fireEvent.click(loginLink);    
+    const signInButton = screen.getByRole('button', { name: /SIGN IN/i});
+
+    expect(signInButton).toBeInTheDocument();
+  })
 
 })

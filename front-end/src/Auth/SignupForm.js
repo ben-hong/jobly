@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../AuthContext";
-import * as React from 'react';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Lock } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar, Alert, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container } from '@mui/material'
 
@@ -56,7 +55,7 @@ function SignupForm() {
           }}
         >
           <Avatar sx={{ m: 1 }}>
-            <LockOutlinedIcon />
+            <Lock/>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up

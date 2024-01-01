@@ -7,7 +7,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/base": "^5.0.0-beta.24",
-    "@mui/icons-material": "^5.14.18",
+    "@mui/icons-material": "^5.15.2",
     "@mui/material": "^5.14.18",
     "@mui/system": "^5.14.18",
     "@testing-library/user-event": "^14.5.1",
@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "pretest": "node pretest-package-field.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules react-scripts test --watchAll=false",
+    "test": "NODE_OPTIONS=--experimental-vm-modules react-scripts test",
     "posttest": "npm run remove-type-field",
     "remove-type-field": "json -I -f package.json -e 'delete this.type'",
     "eject": "react-scripts eject"
@@ -62,6 +62,5 @@
     "jsdom": "^23.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "type": "module"
+  }
 }
