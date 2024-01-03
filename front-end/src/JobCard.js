@@ -54,6 +54,14 @@ function JobCard({ job }) {
     setApplied(true);
   }
 
+  function toggleDescription() {
+    if (expanded || description.length <= 133) {
+      return description;
+    } else {
+      return description.substring(0, 130).trim() + "...";
+    }
+  }
+
   return (
     <Card sx={{ minWidth: 200, maxWidth: 500, margin: 3 }}>
       <CardHeader
@@ -69,7 +77,7 @@ function JobCard({ job }) {
           <small>Salary: {salary}</small>
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {(expanded ? description : description.substring(0, 130) + "...")}
+          {(toggleDescription())}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
