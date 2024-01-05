@@ -5,7 +5,7 @@
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 const db = new Client({
-  connectionString: getDatabaseUri(),
+  connectionString: "postgresql://localhost/jobly",
 });
 // const db = new Client({
 //   connectionString: process.env.DATABASE_URL,
