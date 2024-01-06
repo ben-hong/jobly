@@ -3,11 +3,13 @@
 /** Database setup for jobly. */
 
 const { Client } = require("pg");
-const { getDatabaseUri } = require("./config");
+require("dotenv").config();
 
 const db = new Client({
-  connectionString: "postgresql://localhost/jobly",
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
+// connectionString: "postgresql://localhost/jobly",
 
 db.connect();
 
