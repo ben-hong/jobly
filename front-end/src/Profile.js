@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import AuthContext from "./AuthContext";
 import JoblyApi from "./JoblyApi";
+import Resume from "./Resume";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Avatar, Alert, Box, Button, CssBaseline, Divider, TextField, Typography, Container } from "@mui/material";
 
@@ -77,6 +78,7 @@ function Profile() {
           </Typography>
         </Box>
         <Divider style={{ margin: 3, width: '100%' }} />
+        <Resume></Resume>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 3 }}>
           <Typography variant="h6"><strong>Change Your Name</strong></Typography>
           <form noValidate id="nameForm" onSubmit={handleSubmit}>

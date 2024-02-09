@@ -1,18 +1,22 @@
 -- both test users have the password "password"
 
-INSERT INTO users (username, password, first_name, last_name, email, is_admin)
+INSERT INTO users (username, password, first_name, last_name, email, is_admin, resume, resume_title)
 VALUES ('testuser',
         '$2b$04$7sExi3X7H/VbKQM82QbKne9rgUkNUCrQ8vB6oZfqkJjn8Dtp43G82',
         'Test',
         'User',
         'email@email.com',
-        FALSE),
+        FALSE,
+        NULL,
+        NULL),
        ('testadmin',
         '$2b$04$7sExi3X7H/VbKQM82QbKne9rgUkNUCrQ8vB6oZfqkJjn8Dtp43G82',
         'Test',
         'Admin!',
         'email@email.com',
-        TRUE);
+        TRUE,
+        NULL,
+        NULL);
 
 INSERT INTO companies (handle,
                        name,

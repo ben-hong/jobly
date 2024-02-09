@@ -20,8 +20,12 @@ function App() {
       JoblyApi.token = token;
       const decodedToken = decodeToken(token);
       async function settingCurrUser() {
-        let userData = await JoblyApi.getUser(decodedToken.username);
-        setCurrUser(userData);
+        try {
+          let userData = await JoblyApi.getUser(decodedToken.username);
+          setCurrUser(userData);
+        } catch (err) {
+          return err;
+        }
       }
       settingCurrUser();
       setLocalStorage(token);

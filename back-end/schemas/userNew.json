@@ -31,6 +31,12 @@
     },
     "isAdmin": {
       "type": "boolean"
+    },
+    "resume": {
+      "type": "string"
+    },
+    "resumeTitle": {
+      "type": "string"
     }
   },
   "additionalProperties": false,

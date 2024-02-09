@@ -11,6 +11,14 @@ const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
 const userNewSchema = require("../schemas/userNew.json");
 const userUpdateSchema = require("../schemas/userUpdate.json");
+const multer = require('multer');
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+  },
+});
+const { uploadFile, getSignedURL } = require('../s3')
 
 const router = express.Router();
 
@@ -140,6 +148,19 @@ router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req
     return next(err);
   }
 });
+
+router.post('/resume', upload.any(), async (req, res, next) => {
+  const file = req.files[0];
+  if (!file) return;
+  try {
+    const result = await uploadFile(file);
+    const key = result.singlePart.params.Key;
+    const getURL = getSignedURL(key);
+    return res.status(201).json({ getURL });
+  } catch (err) {
+    return next(err);
+  }
+})
 
 
 module.exports = router;
