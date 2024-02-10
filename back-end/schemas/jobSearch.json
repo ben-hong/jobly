@@ -4,8 +4,8 @@
   "type": "object",
   "properties": {
     "minSalary": {
-      "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "type": "integer"
     },
     "hasEquity": {
       "type": "boolean"

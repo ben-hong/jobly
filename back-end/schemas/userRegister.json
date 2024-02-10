@@ -34,8 +34,8 @@
   "required": [
     "username",
     "firstName",
-    "lastName",
     "password",
+    "lastName",
     "email"
   ]
 }

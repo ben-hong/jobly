@@ -16,7 +16,7 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /auth/token */
+/************************************* POST /auth/token */
 
 describe("POST /auth/token", function () {
   test("works", async function () {

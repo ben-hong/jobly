@@ -17,8 +17,8 @@
       "type": "string"
     },
     "numEmployees": {
-      "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "type": "integer"
     },
     "logoUrl": {
       "type": "string",
@@ -32,3 +32,4 @@
     "description"
   ]
 }
+

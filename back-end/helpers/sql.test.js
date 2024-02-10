@@ -1,4 +1,4 @@
-
+// test for sql.js
 const { sqlForPartialUpdate } = require("./sql");
 
 

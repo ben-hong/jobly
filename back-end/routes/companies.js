@@ -1,6 +1,6 @@
 "use strict";
 
-/** Routes for companies. */
+/** Routes for companies */
 
 const jsonschema = require("jsonschema");
 const express = require("express");

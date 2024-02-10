@@ -22,7 +22,7 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /users */
+/************************************* POST /users */
 
 describe("POST /users", function () {
   test("works for admins: create non-admin", async function () {
