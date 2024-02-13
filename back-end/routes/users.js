@@ -18,7 +18,7 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024, // limit file size to 5MB
   },
 });
-const { uploadFile, getSignedURL } = require('../s3')
+const { uploadFile, getSignedURL, isUrlExpired } = require('../s3')
 
 const router = express.Router();
 
@@ -92,7 +92,7 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
  * Data can include:
  *   { firstName, lastName, password, email }
  *
- * Returns { username, firstName, lastName, email, isAdmin }
+ * Returns { username, firstName, lastName, email, isAdmin, resume, resumeTitle }
  *
  * Authorization required: admin or same-user-as-:username
  **/
@@ -155,10 +155,21 @@ router.post('/resume', upload.any(), async (req, res, next) => {
   try {
     const result = await uploadFile(file);
     const key = result.singlePart.params.Key;
-    const getURL = getSignedURL(key);
-    return res.status(201).json({ getURL });
+    res.redirect(`/users/resume/${key}`);
   } catch (err) {
     return next(err);
+  }
+})
+
+router.get("/resume/:key", async (req, res, next) => {
+  const key = req.params.key;
+  const signedUrl = req.query.signedUrl;
+
+  if (isUrlExpired(signedUrl)) {
+    const getURL = getSignedURL(key);
+    return res.json({ getURL });
+  } else {
+    return res.json({ getURL: signedUrl });
   }
 })
 

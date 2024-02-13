@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = 
-process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL =
+  process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 class JoblyApi {
   // the token for interactive with the API will be stored here.
@@ -76,12 +76,19 @@ class JoblyApi {
 
   /** Post a resume */
 
-    static async postResume({resume}) {
-      const formData = new FormData();
-      formData.append("resume", resume);
-      let res = await this.request(`users/resume`, formData, "post", { 'Content-Type': 'multipart/form-data' });
-      return res.getURL;
-    }
+  static async postResume({ resume }) {
+    const formData = new FormData();
+    formData.append("resume", resume);
+    let res = await this.request(`users/resume`, formData, "post", { 'Content-Type': 'multipart/form-data' });
+    return res.getURL;
+  }
+
+  /** Get resume link */
+
+  static async getResumeLink({ key, signedUrl }) {
+    let res = await this.request(`users/resume/${key}`, { signedUrl });
+    return res.getURL;
+  }
 
   /** Get a job */
 

@@ -21,6 +21,22 @@ function Resume() {
 
     }
 
+    // checks if current link is expired, getResumeLink will give user a new un-expired link
+    async function getResumeLink(evt) {
+        evt.preventDefault();
+        let link = currResume;
+        link = link.split('/').pop();
+        const key = link.split('?')[0];
+        const resumeLink = await JoblyApi.getResumeLink({ key, signedUrl: currResume });
+
+        if (resumeLink !== currResume) {
+            await JoblyApi.changeUserProfile(username, { "resume": resumeLink });
+            setCurrResume(resumeLink);
+        }
+
+        window.open(resumeLink, '_blank');
+    }
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 3 }}>
             <Typography variant="h6"><strong>Upload Your Resumé</strong></Typography>
@@ -29,7 +45,8 @@ function Resume() {
                 <StyledInput onChange={fileUpload} accept="application/pdf" type="file" />
             </Button>
             <Box sx={{ marginTop: 2 }}>
-                {currResume ? <Link href={currResume} target="_blank" rel="noopener noreferrer" underline="hover">{currResumeTitle}</Link> : <></>}
+                {currResume ? <Link href={currResume} onClick={getResumeLink} target="_blank" rel="noopener noreferrer" underline="hover">{currResumeTitle}</Link> : <></>}
+
             </Box>
         </Box>
     )

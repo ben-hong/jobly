@@ -37,11 +37,25 @@ function getSignedURL(fileKey) {
     Bucket: bucketName,
     Key: fileKey,
     ResponseContentType: 'application/pdf',
+    Expires: 600000,
   }
+
   return s3.getSignedUrl('getObject', signedParams)
+}
+
+// checks if url is expired
+function isUrlExpired(signedUrl) {
+  if (!signedUrl) return true;
+
+  const urlParams = new URLSearchParams(signedUrl.split('?')[1]);
+  const expirationTime = parseInt(urlParams.get('Expires'));
+  const currentTime = Math.floor(Date.now() / 1000); 
+
+  return expirationTime < currentTime;
 }
 
 module.exports = {
     uploadFile,
-    getSignedURL
+    getSignedURL,
+    isUrlExpired,
 }
